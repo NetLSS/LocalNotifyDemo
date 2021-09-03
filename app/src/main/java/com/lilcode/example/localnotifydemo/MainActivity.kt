@@ -73,9 +73,47 @@ class MainActivity : AppCompatActivity() {
         val notificationID = 101 // 정수값 아무거나 (향후 알림 변경시 사용됨)
 
         notificationManager?.notify(notificationID, notification)
+
+        val builderSummary: Notification.Builder = Notification.Builder(this, newsChannelID)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle("A Bundle Example")
+            .setContentText("You have 3 new message")
+            .setGroup(GROUP_KEY_NOTIFY)
+            .setGroupSummary(true)
+
+        val builder1: Notification.Builder = Notification.Builder(this, newsChannelID)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle("New Message")
+            .setContentText("You have a new message from SangSu")
+            .setGroup(GROUP_KEY_NOTIFY)
+
+        val builder2: Notification.Builder = Notification.Builder(this, newsChannelID)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle("New Message")
+            .setContentText("You have a new message from MinSu")
+            .setGroup(GROUP_KEY_NOTIFY)
+
+        val builder3: Notification.Builder = Notification.Builder(this, newsChannelID)
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setContentTitle("New Message")
+            .setContentText("You have a new message from YeJi")
+            .setGroup(GROUP_KEY_NOTIFY)
+
+        val notificationId0 = 200
+        val notificationId1 = 201
+        val notificationId2 = 202
+        val notificationId3 = 203
+
+        notificationManager?.run {
+            notify(notificationId1, builder1.build())
+            notify(notificationId2, builder2.build())
+            notify(notificationId3, builder3.build())
+            notify(notificationId0, builderSummary.build())
+        }
     }
 
     companion object {
         const val newsChannelID = "com.lilcode.example.localnotifydemo"
+        const val GROUP_KEY_NOTIFY = "group_key_notify"
     }
 }
