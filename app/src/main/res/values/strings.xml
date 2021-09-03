@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">LocalNotifyDemo</string>
     <string name="notify">Notify</string>
+    <string name="resultactivity">ResultActivity</string>
 </resources>
