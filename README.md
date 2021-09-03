@@ -8,3 +8,5 @@ Android Local Notify Demo project.
 ![screenshot2](https://i.imgur.com/GvP5uJC.png)
 
 ![screenshot3](https://i.imgur.com/qlbIiLF.png)
+
+![screenshot4](https://i.imgur.com/VaBdtWb.png)

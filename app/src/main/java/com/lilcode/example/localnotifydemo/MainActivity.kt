@@ -8,6 +8,7 @@ import android.content.ClipDescription
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.drawable.Icon
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -51,10 +52,12 @@ class MainActivity : AppCompatActivity() {
     fun sendNotification(view: View) {
 
         val resultIntent = Intent(this, ResultActivity::class.java)
-
         val pendingIntent = PendingIntent.getActivity(this, 0, resultIntent, PendingIntent.FLAG_UPDATE_CURRENT)
         // PendingIntent.FLAG_UPDATE_CURRENT : 팬딩 인텐트가 이미 존재할경우, Extra data를 새로운 인텐트 데이터로 업데이트
         // 각각의 알림에서는 팬딩인텐트가 동일 하도록
+
+        val icon: Icon = Icon.createWithResource(this, android.R.drawable.ic_dialog_info)
+        val action: Notification.Action = Notification.Action.Builder(icon, "Open", pendingIntent).build()
 
         // 알림 생성
         val notification = Notification.Builder(this@MainActivity, newsChannelID)
@@ -64,6 +67,7 @@ class MainActivity : AppCompatActivity() {
             .setChannelId(newsChannelID)
             .setNumber(999)
             .setContentIntent(pendingIntent)
+            .setActions(action)
             .build()
 
         val notificationID = 101 // 정수값 아무거나 (향후 알림 변경시 사용됨)
