@@ -1,5 +1,6 @@
 package com.lilcode.example.localnotifydemo
 
+import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.ClipDescription
@@ -8,6 +9,7 @@ import android.graphics.Color
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.annotation.RequiresApi
 
 class MainActivity : AppCompatActivity() {
@@ -22,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
         createNotificationChannel(
-            "com.lilcode.example.localnotifydemo",
+            newsChannelID,
             "Notify News",
             "Example news Channel"
         )
@@ -42,5 +44,25 @@ class MainActivity : AppCompatActivity() {
 
         notificationManager?.createNotificationChannel(channel)
 
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun sendNotification(view: View) {
+        // 알림 생성
+        val notification = Notification.Builder(this@MainActivity, newsChannelID)
+            .setContentTitle("Example Notification")
+            .setContentTitle("This is an example notification.")
+            .setSmallIcon(android.R.drawable.ic_dialog_info)
+            .setChannelId(newsChannelID)
+            .setNumber(999)
+            .build()
+
+        val notificationID = 101 // 정수값 아무거나 (향후 알림 변경시 사용됨)
+
+        notificationManager?.notify(notificationID, notification)
+    }
+
+    companion object {
+        const val newsChannelID = "com.lilcode.example.localnotifydemo"
     }
 }
